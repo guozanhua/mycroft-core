@@ -51,6 +51,8 @@ from mycroft.util import connected, wait_while_speaking, is_speaking, \
     stop_speaking
 from mycroft.util.log import getLogger
 
+from mycroft.client.wifisetup.lib.PyRich import get_wireless_interfaces
+
 __author__ = 'aatchison and penrods'
 
 LOG = getLogger("WiFiClient")
@@ -225,7 +227,7 @@ address=/#/{server}
         sysctrl('restart', 'dnsmasq.service')
 
     def get_iface(self):
-        for iface in pyw.winterfaces():
+        for iface in get_wireless_interfaces():
             if "p2p" in iface:
                 return iface
 
@@ -253,7 +255,7 @@ address=/#/{server}
 
 class WiFi:
     def __init__(self):
-        self.iface = pyw.winterfaces()[0]
+        self.iface = get_wireless_interfaces()[0]
         self.ap = AccessPoint(self.iface)
         self.server = None
         self.ws = WebsocketClient()
