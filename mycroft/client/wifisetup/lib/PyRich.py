@@ -22,7 +22,7 @@ def set_ip(interface, ip):
     print popen2(['ip','addr','add', ip, 'dev', interface])
 
 
-def get_wireless_interfaces(self):
+def get_wireless_interfaces():
     '''
         Read /proc/net/wireless and return a list of interfaces
         :return: type list interfaces
