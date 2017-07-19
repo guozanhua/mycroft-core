@@ -27,12 +27,12 @@ def get_wireless_interfaces():
         Read /proc/net/wireless and return a list of interfaces
         :return: type list interfaces
     '''
-    self.interfaces=[]
-    self.proc_netdev = open("/proc/net/wireless", 'r').read().split('\n')
-    self.proc_netdev.pop(0)
-    self.proc_netdev.pop(0)
-    self.proc_netdev.remove('')
-    for line in self.proc_netdev:
-        self.interfaces.append(line.split(' ').pop(1).split(':').pop(0))
-        return self.interfaces
+    interfaces = []
+    proc_netdev = open("/proc/net/wireless", 'r').read().split('\n')
+    proc_netdev.pop(0)
+    proc_netdev.pop(0)
+    proc_netdev.remove('')
+    for line in proc_netdev:
+        interfaces.append(line.split(' ').pop(1).split(':').pop(0))
+        return interfaces
 
